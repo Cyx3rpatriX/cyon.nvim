@@ -42,7 +42,7 @@
 
 ```lua
 {
-  "YOUR_GITHUB_USERNAME/cyon.nvim",
+  "Cyx3rpatriX/cyon.nvim",
   lazy = false,
   priority = 1000,
   config = function()
@@ -58,7 +58,7 @@
 
 ```lua
 use {
-  "YOUR_GITHUB_USERNAME/cyon.nvim",
+  "Cyx3rpatriX/cyon.nvim",
   config = function()
     require("cyon").setup()
     vim.cmd.colorscheme("cyon")
@@ -69,7 +69,7 @@ use {
 ### vim-plug
 
 ```vim
-Plug 'YOUR_GITHUB_USERNAME/cyon.nvim'
+Plug 'Cyx3rpatriX/cyon.nvim'
 colorscheme cyon
 ```
 
@@ -81,6 +81,7 @@ Defaults:
 require("cyon").setup({
   variant = "grid",        -- "grid" | "neon" | "clu"
   transparent = false,
+  transparency_keymap = "<leader>bg", -- toggle at runtime
   italic_comments = true,
   bold_keywords = true,
   glow_borders = true,
@@ -99,6 +100,16 @@ require("cyon").setup({
   end,
 })
 ```
+### Transparent background
+
+```lua
+require("cyon").setup({
+  transparent = true,
+  transparency_keymap = "<leader>bg", -- toggle at runtime
+})
+```
+> | transparency_keymap | `nil` | Normal-mode key that toggles transparency, e.g. `"<leader>bg"` |
+> Your terminal also needs to be transparent for this to show.
 
 ### Variants
 
@@ -124,16 +135,7 @@ nvim --clean \
   -c "colorscheme cyon"
 ```
 
-## 🗺️ Roadmap
-
-- [ ] Kitty / Alacritty / WezTerm themes
-- [ ] More plugin integrations
-- [ ] Light "daylight grid" variant
-
 ## 🤝 Contributing
 
 Issues and PRs are welcome. If a plugin looks off, open an issue with a screenshot and the output of `:Inspect`.
 
-## 📄 License
-
-[MIT](LICENSE)
