@@ -8,10 +8,35 @@ M.config = {
   glow_borders = true,       -- bright blue window borders
   terminal_colors = true,
   on_highlights = nil,       -- function(hl, c) end
+  transparency_keymap = nil,  -- e.g. "<leader>bg"
 }
+
+-- Toggle transparency, or set it explicitly: bg_transparent(true/false)     ....
+function M.bg_transparent(value)
+  if value == nil then
+    M.config.transparent = not M.config.transparent
+  else
+    M.config.transparent = value
+  end
+  vim.cmd.colorscheme("cyon")
+  vim.notify(
+    "cyon: transparent background " .. (M.config.transparent and "ON" or "OFF"),
+    vim.log.levels.INFO
+  )
+end
 
 function M.setup(opts)
   M.config = vim.tbl_deep_extend("force", M.config, opts or {})
+
+  if M.config.transparency_keymap then
+    vim.keymap.set("n", M.config.transparency_keymap, function()
+      M.bg_transparent()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Cyon: toggle transparent background",
+    })
+  end
 end
 
 function M.load()
